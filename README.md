@@ -6,6 +6,8 @@
 
 ### ESP32-CAM
 
+![ESP32 Cam](https://github.com/Nanich87/esp32-cam-gnss-logger/blob/main/esp32-cam.png "ESP32 Cam")
+
 ### ZED-F9P RTK InCase PIN GNSS receiver board with UF.L (IPEX) Base or Rover
 
 ![u-blox ZED-F9P](https://github.com/Nanich87/esp32-cam-gnss-logger/blob/main/u-blox-zed-f9p.jpg "ZED-F9P RTK InCase PIN GNSS receiver board with UF.L (IPEX) Base or Rover")
