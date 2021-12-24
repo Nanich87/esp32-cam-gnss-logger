@@ -1,1 +1,1 @@
-# esp32-cam-gnss-logger
+# ESP32-CAM GNSS Logger
