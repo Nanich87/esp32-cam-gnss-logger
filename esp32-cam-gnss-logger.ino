@@ -17,12 +17,15 @@ File file;
 void setup() {
   Serial.begin(115200);
 
+  pinMode(33, OUTPUT);
+  digitalWrite(33, HIGH);
+
   if (hwSerial == nullptr)
   {
-    hwSerial = new HardwareSerial(1);
+    hwSerial = new HardwareSerial(0);
   }
 
-  hwSerial->begin(GPS_BAUD_RATE, SERIAL_8N1, GPS_RX, GPS_TX);
+  hwSerial->begin(115200);
 
   if (!SD_MMC.begin()) {
     Serial.println("Card Mount Failed");
@@ -35,9 +38,19 @@ void setup() {
     Serial.println("No SD_MMC card attached");
     return;
   }
+  else {
+    Serial.println("SD card detected");
+  }
 
-  sprintf(filename, "rover_%1d.ubx", millis());
+  uint64_t cardSize = SD_MMC.cardSize() / (1024 * 1024);
+  Serial.printf("SD_MMC Card Size: %lluMB\n", cardSize);
+
+  sprintf(filename, "/rover_%1d.ubx", millis());
+  Serial.println(filename);
   file = SD_MMC.open(filename, FILE_APPEND);
+  if (!file) {
+    Serial.println("File open error");
+  }
 }
 
 void loop() {
@@ -53,6 +66,10 @@ void loop() {
     }
 
     file.write(bufferSend, i2);
+    file.print("Data Received");
+    Serial.println("Data Received");
     i2 = 0;
   }
+
+  delay(125);
 }
